@@ -31,4 +31,13 @@
  */
 export function calculateTip(billAmount, serviceRating) {
   // Your code here
+if(billAmount <=0 || serviceRating <1 || serviceRating >5 || !Number.isInteger(serviceRating))
+  return null;
+console.log(`Bill amount ${billAmount} , Service Rating ${serviceRating}`)
+return {
+  tipPercentage: serviceRating*5, 
+  tipAmount:Number((billAmount*((serviceRating*5)/100)).toFixed(2)),
+  totalAmount:Number((billAmount + billAmount*((serviceRating*5)/100)).toFixed(2))
+}
+
 }

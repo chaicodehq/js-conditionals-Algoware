@@ -27,4 +27,30 @@
  */
 export function checkPasswordStrength(password) {
   // Your code here
+  let score = 0;
+  let strength = '';
+  const eightcar = /^.{8,}$/
+  const uppercase = /^(?=.*[A-Z]).+$/
+  const lowercase = /^(?=.*[a-z]).+$/
+  const numberex = /^(?=.*[0-9]).+$/
+  const specialchar = /^(?=.*[!@#$%^&*()_+\-=\[\]{}|;:,.<>?]).+$/
+
+  score += eightcar.test(password)?1:0 ;
+  score += uppercase.test(password) ?1:0 ;
+  score += lowercase.test(password)?1:0 ;
+  score += numberex.test(password)?1:0 ;
+  score += specialchar.test(password)?1:0 ;
+
+  switch(score){
+case 1:strength = 'weak'; break;
+case 2: strength = 'medium';break;
+case 3: strength = 'medium';break;
+case 4: strength = 'strong';break;
+case 5: strength = 'very strong';break;
+default: strength = 'weak';
+
+  }
+
+
+  return strength;
 }

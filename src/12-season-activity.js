@@ -32,4 +32,47 @@
  */
 export function getSeasonActivity(month, temperature) {
   // Your code here
+  let monthstring = '';
+  let activity = '';
+
+  const monthSeason = {
+    Winter:[1,2,12],
+    Spring:[3,4,5],
+    Summer:[6,7,8],
+    Autumn:[9,10,11]
+  };
+console.log(`Case for Temperature ${temperature} and month is ${month}`)  
+  if(month < 1 || month >12)
+    return null;
+
+  Object.entries(monthSeason).forEach(([season,mon])=>{
+    if(mon.includes(month))
+    {
+      monthstring = season;
+    }
+  });
+    
+switch(true){
+  case (monthstring=='Winter' && temperature < 0):activity = "skiing";
+  break;
+  case (monthstring=='Winter' && temperature >= 0):activity = "ice skating";
+  break;
+  case (monthstring=='Spring' && temperature > 20):activity =  "hiking";
+  break;
+  case (monthstring=='Spring' && temperature <= 20):activity =  "museum visit";
+  break;
+  case (monthstring=='Summer' && temperature >35):activity =  "swimming";
+  break;
+  case (monthstring=='Summer' && temperature <=35):activity =  "cycling";
+  break;
+  case (monthstring=='Autumn' && temperature >15 ):activity = "nature walk";
+  break;
+  case (monthstring=='Autumn' && temperature <=15):activity =  "reading at a cafe"; break;
+  default: return null ;
 }
+console.log(`Season ${monthstring} and activity is ${activity}`) 
+return { season: monthstring, activity: activity };
+}
+
+
+

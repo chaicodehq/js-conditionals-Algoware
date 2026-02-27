@@ -34,4 +34,43 @@
  */
 export function calculateParkingFee(hours, vehicleType) {
   // Your code here
+  let parkingFee = 0;
+  const vehicleRates = {
+            car: {
+              firstHour:5,
+              afterFirst:3,
+              dailyMax:30
+            },
+            motorcycle:{
+              firstHour:3,
+              afterFirst:2,
+              dailyMax:18
+            },
+            bus:{
+              firstHour:10,
+              afterFirst:7,
+              dailyMax:60
+            }
+          };
+  
+          const vehicle = ["car","motorcycle","bus"]
+          if(hours <=0 || !vehicle.includes(vehicleType))
+          {  return -1;
+          }
+          hours = Math.ceil(hours);
+//console.log(`hour ${hours}, vehicle ${vehicleType}`)
+
+    if(hours>=1)  {
+    parkingFee = vehicleRates[vehicleType].firstHour  
+    hours--;
+    }
+    
+    if(hours){
+      
+      parkingFee += (hours *  vehicleRates[vehicleType].afterFirst) 
+      parkingFee = parkingFee > vehicleRates[vehicleType].dailyMax? vehicleRates[vehicleType].dailyMax : parkingFee
+
+    }
+
+return parkingFee;
 }

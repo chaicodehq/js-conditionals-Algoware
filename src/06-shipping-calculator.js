@@ -30,4 +30,33 @@
  */
 export function calculateShipping(weight, country, orderTotal) {
   // Your code here
+    let retValue = 0;
+    if(weight <=0 || orderTotal < 0)
+      return -1;
+
+    if(country === "US")
+    {
+      switch(true)
+      {
+        case (orderTotal > 50): retValue= 0; break;
+        case (weight <= 1): retValue =5 ;break;
+        case (weight <= 5): retValue =10 ;break;
+        case (weight > 5 ): retValue =15 ;break;
+        default: retvalue = -1;
+      }
+    }
+
+    if(country != "US")
+    {
+       switch(true)
+      {
+        case (orderTotal > 100): retValue= 0; break;
+        case (weight <= 1): retValue =15 ;break;
+        case (weight <= 5): retValue =25 ;break;
+        case (weight > 5 ): retValue =40 ;break;
+        default: retvalue = -1;
+      }
+    }
+    console.log(`Weight ${weight}, Order Total ${orderTotal} return ${retValue}`)    
+    return retValue;
 }
